@@ -1,4 +1,5 @@
 import typing
+import collections
 
 import tqdm
 
@@ -20,7 +21,7 @@ def find_first_deviation(event_log_list: typing.List[dict]):
             traceids.append(traceid)
         
         if len(set(texts)) != 1:
-            print(f"Deviation: {set(texts)}")
+            print(f"Deviation: {dict(collections.Counter(texts))}")
             return { 'text': texts, 'traceids': traceids, 'open_events': open_events }
 
         text = texts[0]

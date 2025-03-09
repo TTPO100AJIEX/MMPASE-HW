@@ -9,7 +9,7 @@ def extract_call_contents(event_log_list: typing.List[dict], call_name_substring
     for event in tqdm.tqdm(event_log_list):
         event_name = event['concept:name']
 
-        if event_name.endswith(call_name_substring):
+        if event_name.endswith(":" + call_name_substring):
             if event_name == f"Start:{call_name_substring}":
                 open_starts += 1
             else:
