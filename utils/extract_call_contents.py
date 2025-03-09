@@ -16,11 +16,11 @@ def extract_call_contents(event_log_list: typing.List[dict], call_name_substring
                 assert event_name == f"End:{call_name_substring}"
                 open_starts -= 1
                 if open_starts == 0:
-                    log_list_filt.append({ **event, 'case:concept:name': str(call_number) })
+                    log_list_filt.append({ **event, 'original:concept:name': event['case:concept:name'], 'case:concept:name': str(call_number) })
                     call_number += 1
 
         if open_starts != 0:
-            log_list_filt.append({ **event, 'case:concept:name': str(call_number) })
+            log_list_filt.append({ **event, 'original:concept:name': event['case:concept:name'], 'case:concept:name': str(call_number) })
 
     assert open_starts == 0
     return log_list_filt
